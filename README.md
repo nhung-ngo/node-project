@@ -47,7 +47,6 @@ database/          # SQL setup and seed data
 - express
 - better-sqlite3
 - multer
-- sqlite3 
 
 ---
 
