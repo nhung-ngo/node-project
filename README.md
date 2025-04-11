@@ -49,50 +49,98 @@ database/          # SQL setup and seed data
 - multer
 - sqlite3 
 
-##  Example Routes (Thunder Client)
-   For user:
+---
 
-- `GET /http://localhost:3000/users/all` – all users  
-- `GET /http://localhost:3000/users/:id` – get user by userID  
-- `POST /http://localhost:3000/users/add` – add new user 
+##  Users
+
+###  Add New Customer
+`POST /users/add`
+
+```json
 {
   "name": "Luna Nguyen",
   "email": "luna@example.com",
   "password": "custpass",
   "user_type": "customer"
 }
+```
+
+###  Add New Admin
+`POST /users/add`
+
+```json
 {
   "name": "Admin Jane",
   "email": "admin.jane@example.com",
   "password": "adminpass",
   "user_type": "admin"
 }
+```
+### 📋 Get All Users
+`GET /users/all`
+
+### 🔍 Get User by ID
+`GET /users/:id`
 
 
-   For products:
-- `GET /http://localhost:3000/products?search=crystal` – search products by case_name (crystal, leather,...) from Products Table
-- `GET /http://localhost:3000/products?category=slim` – search products by case_name (slim, clear,...) from Categories Table
-- `GET /http://localhost:3000/products/1` – product details  
-- `GET /http://localhost:3000/products?description=shockproof&phone=galaxy` – search products by phone_model AND description
-- `GET /http://localhost:3000/products` – get all products  
+---
 
+##  Products
 
+###  Search Products by Name (e.g., "crystal")
+`GET /products?search=crystal`
 
-   For cart: do step by step
-- `POST http://localhost:3000/cart/add` – add to cart  
-   {
+###  Search by Category (from Categories table)
+`GET /products?category=slim`
+
+###  Filter by Phone + Description
+`GET /products?description=shockproof&phone=galaxy`
+
+###  Get All Products
+`GET /products`
+
+###  View Product Details
+`GET /products/1`
+
+---
+
+## 🛒 Cart
+
+###  Add to Cart
+`POST /cart/add`
+
+```json
+{
   "userID": 1,
   "productID": 3,
   "quantity": 2
-   }  - JSON
-- `GET http://localhost:3000/cart/:userID` – get cart by userID
-- `DELETE http://localhost:3000/cart/remove/:productID` – delete product in cart by productID
-- `POST http://localhost:3000/cart/checkout` – check out - do this after deleted product or added to cart to make sure the status's cart have not in check_out.
-   
+}
+```
+###  View Cart by User
+`GET /cart/1`
 
+###  Remove Product from Cart
+`DELETE /cart/remove/3`
 
-   For admin:
-- `POST http://localhost:3000/admin/products/add` – add product  
+###  Checkout
+`POST /cart/checkout`
+
+```json
+{
+  "userID": 1
+}
+```
+
+>  Make sure the cart status is still "active" before checking out!
+
+---
+
+## 🧑 Admin – Product Management
+
+###  Add Product
+`POST /admin/products/add`
+
+```json
 {
   "case_name": "Ocean Blue Case",
   "description": "A calming ocean-themed case",
@@ -101,9 +149,13 @@ database/          # SQL setup and seed data
   "image_path": "images/ocean-blue.png",
   "phone_model": "iPhone 14",
   "categoryID": 4
-}  -JSON
+}
+```
 
-- `PUT http://localhost:3000/admin/products/3` – update product  
+###  Update Product
+`PUT /admin/products/3`
+
+```json
 {
   "case_name": "Updated Clear Case",
   "description": "Ultra transparent and protective",
@@ -112,8 +164,13 @@ database/          # SQL setup and seed data
   "image_path": "images/updated-clear.png",
   "phone_model": "Galaxy S22",
   "categoryID": 4
-}  - JSON
-- `POST http://localhost:3000/admin/products/bulk` – upload from JSON
+}
+```
+
+###  Bulk Upload Products
+`POST /admin/products/bulk`
+
+```json
 [
   {
     "case_name": "Sunset Glow Case",
@@ -133,14 +190,5 @@ database/          # SQL setup and seed data
     "phone_model": "Pixel 6",
     "categoryID": 3
   }
-] - JSON
-
-
-
-- `.gitignore` should include:
-  ```
-  node_modules/
-  SQL.db
-  SQL.db-journal
-  .env
-  ```
+]
+```
