@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- 
+    Name: Nhung Ngo
+    Date: 02.25.2025
+    CSC 372-01
+
+    This page displays the shopping cart, listing all added items with their details. 
+     It calculates the total cost including tax and provides an option to remove items or proceed to checkout. 
+-->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case's Cart</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="icon" type="image/gif" href="images/logo.png">
+
+</head>
+
+
+<body>
+    <header>
+        <nav class="nav-links">
+            <a href="admin-upload.html" class="logo-container">
+                <img src="images/logo.png" alt="logo">
+            </a>
+            <div class="nav-text">
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="#">Sign In</a>
+            </div>
+            <a href="cart.html" class="cart-icon">
+                <img src="images/shopping-cart.png" alt="cart">
+            </a>
+        </nav>
+    </header>
+
+    <section>
+        <div class="splash">
+            <div class="splash-container">
+
+
+                <div class="splash-content">
+    
+                    <p class="tagline">FREE RETURNS UP TO 90 DAYS</p>
+                </div>
+    
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for phone cases...">
+                    <button type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+       
+        <div class="modi">
+            <div class="modi-container">
+                <a href="index.html">HOME /</a>
+                <a href="products.html">MODI's PHONE CASES</a>
+            </div>
+        </div>
+  
+        <div class="cart-container">
+            <div class="cart-items">
+                <h1>Shopping Cart</h1>
+                <div class="cart-item">
+                    <img src="images/flower.png" alt="Flower Case">
+                    <div class="item-details">
+                        <p>Matte Flower Case</p>
+                        <p class="price">$14.99</p>
+                        <label>Quantity: <input type="number" value="2" min="1"></label>
+                        <p class="total">Total: $29.98</p>
+                        <button>Remove</button>
+                    </div>
+                </div>
+    
+                <div class="cart-item">
+                    <img src="images/couple.png" alt="Couple Case">
+                    <div class="item-details">
+                        <p>Dinosaurs Couple Case</p>
+                        <p class="price">$12.99</p>
+                        <label>Quantity: <input type="number" value="2" min="1"></label>
+                        <p class="total">Total: $25.98</p>
+                        <button>Remove</button>
+                    </div>
+                </div>
+    
+                <div class="cart-item">
+                    <img src="images/tiger.png" alt="Tiger Case">
+                    <div class="item-details">
+                        <p>Black Tiger Pattern Case</p>
+                        <p class="price">$12.99</p>
+                        <label>Quantity: <input type="number" value="2" min="1"></label>
+                        <p class="total">Total: $25.98</p>
+                        <button>Remove</button>
+                    </div>
+                </div>
+    
+                
+            </div>
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <p>Subtotal: $81.94</p>
+                <P>Delivery: $0.00</P>
+                <p>Tax (6.75%): $5.53</p>
+                <p>Total: $87.47</p>
+               <button onclick="location.href='#'">Checkout Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <pre class="copyright">
+    &copy; 2025 MODI PHONE CASES.
+        </pre>
+    </footer>
+</body>
+
+</html>
