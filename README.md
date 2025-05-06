@@ -1,193 +1,82 @@
-# Phone Case Ecommerce Backend
+#  ModiCase
 
-This is a Node.js + Express backend API for a phone case ecommerce store. It supports product browsing, filtering, cart management, and admin operations.
+ModiCase is an e-commerce web application for browsing and purchasing phone cases. Users can filter by phone models, view product details, add items to their cart, and complete the checkout process. Admins can manage the product catalog.
+
+---
 
 ##  Features
 
-- View all products
-- Search by phone model, description, or category
+- Browse all phone case products
+- Search by phone model, category
 - View product details
-- Add/edit/delete products (Admin only)
-- Add and remove items from cart
-- Checkout (empty cart)
-- Bulk product upload from JSON
+- Add/remove items from the cart
+- Checkout 
+- View order history
+- Admin dashboard:
+  - Add/edit/delete products
+  - Bulk upload products via JSON
 
-##  Project Structure
+---
 
-```
-controllers/       # Logic for API routes
-models/            # DB connection methods
-routes/            # API route definitions
-public/            # Static frontend files
-database/          # SQL setup and seed data
-```
+##  Tech Stack
 
-##  Getting Started
+- **Backend:** Node.js, Express
+- **Database:** SQLite
+- **Frontend:** Pug (template engine), HTML/CSS
+- **Authentication:** Google OAuth 
 
-1. **Install dependencies**  
-   
+---
+
+##  How to Run Locally
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/nhung-ngo/ModiCase.git
+   ```
+
+2. **Install dependencies**
+   ```bash
    npm install
-   
-2. **Run the app**  
-   
-   nodemon server.js
-
-3. **Seed the database** 
-   The database be named SQL.db
-   Open your SQLite DB Browser and run these files in order:
-   ```
-   1. database/create_tables.sql
-   2. database/insert_users.sql
-   3. database/insert_categories.sql
-   4. database/insert_products.sql
-   ```
-
-##  Dependencies
-
 - express
 - better-sqlite3
 - multer
 
+   ```
+
+3. **Run the app**
+   ```bash
+   nodemon server.js
+   ```
+   App will be available at: `http://localhost:3000`
+  
+
+4. **Log in**   
+  ```By Google Acount
+  For Admin: Change the email on passport.js to your email to see the admin pages. 
+  And make sure that email shows "admin" on user_type column on database.
 ---
 
-##  Users
+##  Bulk Upload Format
 
-###  Add New Customer
-`POST /users/add`
-
-```json
-{
-  "name": "Luna Nguyen",
-  "email": "luna@example.com",
-  "password": "custpass",
-  "user_type": "customer"
-}
 ```
-
-###  Add New Admin
-`POST /users/add`
-
-```json
-{
-  "name": "Admin Jane",
-  "email": "admin.jane@example.com",
-  "password": "adminpass",
-  "user_type": "admin"
-}
-```
-### 📋 Get All Users
-`GET /users/all`
-
-### 🔍 Get User by ID
-`GET /users/:id`
-
-
----
-
-##  Products
-
-###  Search Products by Name (e.g., "crystal")
-`GET /products?search=crystal`
-
-###  Search by Category (from Categories table)
-`GET /products?category=slim`
-
-###  Filter by Phone + Description
-`GET /products?description=shockproof&phone=galaxy`
-
-###  Get All Products
-`GET /products`
-
-###  View Product Details
-`GET /products/1`
-
----
-
-## 🛒 Cart
-
-###  Add to Cart
-`POST /cart/add`
-
-```json
-{
-  "userID": 1,
-  "productID": 3,
-  "quantity": 2
-}
-```
-###  View Cart by User
-`GET /cart/1`
-
-###  Remove Product from Cart
-`DELETE /cart/remove/3`
-
-###  Checkout
-`POST /cart/checkout`
-
-```json
-{
-  "userID": 1
-}
-```
-
->  Make sure the cart status is still "active" before checking out!
-
----
-
-## 🧑 Admin – Product Management
-
-###  Add Product
-`POST /admin/products/add`
-
-```json
-{
-  "case_name": "Ocean Blue Case",
-  "description": "A calming ocean-themed case",
-  "price": 14.99,
-  "stock": 20,
-  "image_path": "images/ocean-blue.png",
-  "phone_model": "iPhone 14",
-  "categoryID": 4
-}
-```
-
-###  Update Product
-`PUT /admin/products/3`
-
-```json
-{
-  "case_name": "Updated Clear Case",
-  "description": "Ultra transparent and protective",
-  "price": 11.99,
-  "stock": 30,
-  "image_path": "images/updated-clear.png",
-  "phone_model": "Galaxy S22",
-  "categoryID": 4
-}
-```
-
-###  Bulk Upload Products
-`POST /admin/products/bulk`
-
-```json
 [
   {
-    "case_name": "Sunset Glow Case",
-    "description": "Gradient sunset colors",
-    "price": 12.99,
-    "stock": 25,
-    "image_path": "images/sunset-glow.png",
-    "phone_model": "iPhone 13",
-    "categoryID": 2
+    "case_name": "Itachi Uchiha Case",
+    "price": 14.99,
+    "stock": 50,
+    "categoryID": 1,
+    "image_path": "https://animecaseshop.com/cdn/shop/files/NarutoiphoneXXSXR1112131415161718minipluspromaxSamsungS20S21S22S23S24S25S26S27PlusUltra7_7fb2202e-532c-45fc-ad88-ac7b1afada12_1080x.jpg?v=1731955496",
+    "description": "Anime phone case.",
+    "phoneModels": ["Pixel 7", "iPhone 15"]
   },
   {
-    "case_name": "Dragon Skin Case",
-    "description": "Textured and rugged",
-    "price": 15.99,
-    "stock": 15,
-    "image_path": "images/dragon-skin.png",
-    "phone_model": "Pixel 6",
-    "categoryID": 3
+    "case_name": "Naruto Case",
+    "price": 24.99,
+    "stock": 30,
+    "categoryID": 2,
+    "image_path": "https://animecaseshop.com/cdn/shop/files/WeChatImage_20230706110044_4384c283-0a90-4107-b4b1-ee7ea966be4e_1080x.jpg?v=1688621993",
+    "description": "Battle of True Strength",
+    "phoneModels": ["iPhone 14", "Galaxy S23"]
   }
 ]
 ```
